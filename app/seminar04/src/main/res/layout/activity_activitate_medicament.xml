@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Denumire:" />
+
+        <EditText
+            android:id="@+id/etDenumire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preț (lei):" />
+
+
+        <EditText
+            android:id="@+id/etPret"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
+
+        <CheckBox
+            android:id="@+id/cbReteta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Necesită rețetă" />
+
+        <RadioGroup
+            android:id="@+id/rgUtilizare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rbIntern"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Uz intern" />
+            <RadioButton
+                android:id="@+id/rbExtern"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Uz extern" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Formă:" />
+        <Spinner
+            android:id="@+id/spForma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/forme" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5" />
+
+        <Switch
+            android:id="@+id/swDisponibil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Disponibil în stoc" />
+
+        <Button
+            android:id="@+id/btnSalveaza"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salvează" />
+    </LinearLayout>
+</ScrollView>

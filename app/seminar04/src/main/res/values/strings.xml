@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">seminar04</string>
+    <string name="exemplu_ion">Exemplu: Ion</string>
+    <string name="apasa">apasa\n</string>
+    <string name="necesita_reteta">Necesita Reteta?</string>
+    <string name="adaugaDate">adaugaDate\n</string>
+
+    <string-array name="forme">
+        <item>Tabletă</item>
+        <item>Sirop</item>
+        <item>Cremă</item>
+        <item>Injecție</item>
+    </string-array>
+</resources>
+

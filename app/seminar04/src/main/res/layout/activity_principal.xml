@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <Button
+        android:id="@+id/btnAdauga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adaugă medicament" />
+
+    <Button
+        android:id="@+id/btnAdaugaAI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adaugă medicament (design AI)" />
+
+    <TextView
+        android:id="@+id/tvRezultat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="16sp"
+        android:text="Niciun medicament adăugat" />
+</LinearLayout>
