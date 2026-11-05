@@ -1,8 +1,11 @@
 package com.example.seminar04;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Medicament implements Serializable {
+import androidx.annotation.NonNull;
+
+public class Medicament implements Parcelable {
    private boolean cuReteta; //checkbox cu reteta sau fara
     private double pret;
     private String denumire;
@@ -64,4 +67,39 @@ public class Medicament implements Serializable {
     public void setDisponibil(boolean disponibil) {
         this.disponibil = disponibil;
     }
+
+    @Override
+    public String toString() {
+        return denumire + " - " + pret + " lei" + (cuReteta ? "cu rețetă" : "fără rețetă") + ", " + tipUtilizare  + (disponibil ? ", disponibil" : ", indisponibil");
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+
+    }
+    protected Medicament(Parcel in) {
+        cuReteta = in.readByte() != 0;
+        pret = in.readDouble();
+        denumire = in.readString();
+        tipUtilizare = in.readString();
+        disponibil = in.readByte() != 0;
+    }
+
+    public static final Creator<Medicament> CREATOR = new Creator<Medicament>() {
+        @Override
+        public Medicament createFromParcel(Parcel in) {
+            return new Medicament(in);
+        }
+
+        @Override
+        public Medicament[] newArray(int size) {
+            return new Medicament[size];
+        }
+    };
 }

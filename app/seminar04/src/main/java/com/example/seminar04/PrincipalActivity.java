@@ -10,8 +10,13 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class PrincipalActivity extends AppCompatActivity {
+
     private TextView tvRezultat;
+    private final ArrayList<Medicament> lista = new ArrayList<>();
+
     private final ActivityResultLauncher<Intent> launcher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -19,11 +24,26 @@ public class PrincipalActivity extends AppCompatActivity {
                     Bundle bundle = result.getData().getExtras();
                     if (bundle == null) return;
 
-                    Medicament m = (Medicament) bundle.getSerializable(ActivitateMedicament.KEY_MEDICAMENT);
-                    float rating = bundle.getFloat(ActivitateMedicament.KEY_RATING, 0);
-
+                    Medicament m = (Medicament) bundle.getParcelable(ActivitateMedicament.KEY_MEDICAMENT);
                     if (m != null) {
+                        lista.add(m);
+                        actualizeazaText();
                         Toast.makeText(this, "Adăugat: " + m.getDenumire(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
+    // Rezultatul de la ActivitateLista (lista după modificări și ștergeri)
+    private final ActivityResultLauncher<Intent> launcherLista = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    ArrayList<Medicament> actualizata =
+                            result.getData().getParcelableArrayListExtra(ActivitateLista.Lista);
+                    if (actualizata != null) {
+                        lista.clear();
+                        lista.addAll(actualizata);
+                        actualizeazaText();
                     }
                 }
             });
@@ -36,7 +56,21 @@ public class PrincipalActivity extends AppCompatActivity {
         tvRezultat = findViewById(R.id.tvRezultat);
         Button btnAdauga = findViewById(R.id.btnAdauga);
         Button btnAdaugaAI = findViewById(R.id.btnAdaugaAI);
-        btnAdauga.setOnClickListener(v -> launcher.launch(new Intent(this, ActivitateMedicament.class)));
-        btnAdaugaAI.setOnClickListener(v -> launcher.launch(new Intent(this, ActivitateMedicamentAi.class)));
+        Button btnLista = findViewById(R.id.btnLista);
+
+        btnAdauga.setOnClickListener(v ->
+                launcher.launch(new Intent(this, ActivitateMedicament.class)));
+        btnAdaugaAI.setOnClickListener(v ->
+                launcher.launch(new Intent(this, ActivitateMedicamentAi.class)));
+
+        btnLista.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ActivitateLista.class);
+            intent.putParcelableArrayListExtra(ActivitateLista.Lista, lista);
+            launcherLista.launch(intent);
+        });
+    }
+
+    private void actualizeazaText() {
+        tvRezultat.setText("Medicamente în listă: " + lista.size());
     }
 }

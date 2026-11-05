@@ -24,4 +24,9 @@
         android:layout_marginTop="24dp"
         android:textSize="16sp"
         android:text="Niciun medicament adăugat" />
+    <Button
+        android:id="@+id/btnLista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vezi lista medicamente!" />
 </LinearLayout>
