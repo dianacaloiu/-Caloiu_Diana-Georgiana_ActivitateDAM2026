@@ -76,7 +76,6 @@ public class Medicament implements Parcelable {
                 + (disponibil ? ", disponibil" : ", indisponibil");
     }
 
-  
     @Override
     public int describeContents() {
         return 0;
