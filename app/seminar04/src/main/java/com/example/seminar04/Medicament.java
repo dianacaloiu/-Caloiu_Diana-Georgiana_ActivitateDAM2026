@@ -6,21 +6,21 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class Medicament implements Parcelable {
-   private boolean cuReteta; //checkbox cu reteta sau fara
+    private boolean cuReteta; //checkbox cu reteta sau fara
     private double pret;
     private String denumire;
     private String tipUtilizare;
-   private  boolean disponibil;
+    private boolean disponibil;
 
-    public Medicament(){
-        this.cuReteta=true;
-        this.pret=0;
-        this.denumire="anonim";
-        this.tipUtilizare="-";
-        this.disponibil=false;
+    public Medicament() {
+        this.cuReteta = true;
+        this.pret = 0;
+        this.denumire = "anonim";
+        this.tipUtilizare = "-";
+        this.disponibil = false;
     }
 
-    public Medicament(boolean cuReteta,String denumire, double pret, String tipUtilizare, boolean disponibil) {
+    public Medicament(boolean cuReteta, String denumire, double pret, String tipUtilizare, boolean disponibil) {
         this.denumire = denumire;
         this.pret = pret;
         this.cuReteta = cuReteta;
@@ -70,10 +70,13 @@ public class Medicament implements Parcelable {
 
     @Override
     public String toString() {
-        return denumire + " - " + pret + " lei" + (cuReteta ? "cu rețetă" : "fără rețetă") + ", " + tipUtilizare  + (disponibil ? ", disponibil" : ", indisponibil");
+        return denumire + " - " + pret + " lei"
+                + (cuReteta ? ", cu rețetă" : ", fără rețetă")
+                + ", " + tipUtilizare
+                + (disponibil ? ", disponibil" : ", indisponibil");
     }
 
-
+  
     @Override
     public int describeContents() {
         return 0;
@@ -81,8 +84,13 @@ public class Medicament implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-
+        dest.writeByte((byte) (cuReteta ? 1 : 0));
+        dest.writeDouble(pret);
+        dest.writeString(denumire);
+        dest.writeString(tipUtilizare);
+        dest.writeByte((byte) (disponibil ? 1 : 0));
     }
+
     protected Medicament(Parcel in) {
         cuReteta = in.readByte() != 0;
         pret = in.readDouble();

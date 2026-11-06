@@ -51,7 +51,7 @@ public class MedicamentAdapter extends BaseAdapter {
         tvDenumire.setText(m.getDenumire());
         tvDetalii.setText((m.isCuReteta() ? "Cu rețetă" : "Fără rețetă") + " • " + m.getTipUtilizare());
         tvPret.setText(String.format(Locale.getDefault(), "%.2f lei", m.getPret()));
-        tvStatus.setTextColor(Color.parseColor(m.isDisponibil() ? "red" : "green"));
+        tvStatus.setTextColor(Color.parseColor(m.isDisponibil() ? "green" : "red"));
 
         return v;
     }
